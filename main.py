@@ -14,7 +14,7 @@ touch = TouchIn(D1)
 
 # NeoPixel strip (of 16 LEDs) connected on D4
 NUMPIXELS = 9
-MAXLITBLINKPIXELS = 9
+MAXLITBLINKPIXELS = 2
 CURLITBLINKPIXELS = 0
 neopixels = neopixel.NeoPixel(D3, NUMPIXELS, brightness=.1, auto_write=True)
 DIRECTION = 1 # 1 == "up"
@@ -32,7 +32,7 @@ PINK = (200, 150, 160)
 BLACK = (0, 0, 0)
 
 ## COLORPALLET = [CYAN, WHITE, BLUE, PURPLE, GREEN, PINK, BLACK]
-COLORPALLET = [CYAN, WHITE, BLUE, PURPLE]
+COLORPALLET = [WHITE, WHITE, WHITE, WHITE]
 
 ######################### HELPERS ##############################
 
@@ -100,6 +100,7 @@ def blinkFade(blinkColor):
     # count total lit pixels
     for p in range(NUMPIXELS):
         aPixel = neopixels[p]
+        # If a pixel is already lit, skip.
         if (aPixel[0] > 10 or aPixel[1] > 10 or aPixel[2] > 10):
             rCur = aPixel[0]
             gCur = aPixel[1]
@@ -122,9 +123,12 @@ def blinkFade(blinkColor):
 
 
     # if the number of lit pixels is less than max lit pixels
-    if currentLitPixels < 10:
+    # THIS IS THE PROBLEM. A RANDOM PIXEL IS SELECTED IF THERE 
+    # ARE LESS THAN MAX LIT PIXELS, BUT NEVER CHECKS IF THE 
+    # PIXEL IS ALREADY LIT...
+    if currentLitPixels < MAXLITBLINKPIXELS:
         neopixels[random.randint(0,8)] = blinkColor
-        # neopixels[random.randint(0,29)] = (250, 250, 250)
+    # neopixels[random.randint(0,29)] = (250, 250, 250)
 
     # if currentLitPixels < 15:
     #     for p in range(NUMPIXELS):
@@ -150,4 +154,4 @@ while True:
         neopixels.fill(BLACK)
     else:
         blinkFade(COLORPALLET[random.randint(0,3)])
-        time.sleep(.25)
+        time.sleep(1)
