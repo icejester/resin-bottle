@@ -14,19 +14,20 @@ touch = TouchIn(D1)
 
 # NeoPixel strip (of 16 LEDs) connected on D4
 NUMPIXELS = 9
-MAXLITBLINKPIXELS = 2
+MAXLITBLINKPIXELS = 7
 CURLITBLINKPIXELS = 0
+LED_STATES = [0] * NUMPIXELS
 neopixels = neopixel.NeoPixel(D3, NUMPIXELS, brightness=.1, auto_write=True)
 DIRECTION = 1 # 1 == "up"
 COLOR = 1 # 1 == "red"
 
 # COLORS
-RED = (0, 255, 0)
+RED = (255, 0, 0)
 ORANGE = (255,165,0)
 WHITE = (125, 125, 125)
 BLUE = (0,0,255)
 PURPLE = (180, 0, 255)
-GREEN = (255, 0, 0)
+GREEN = (0, 255, 0)
 CYAN = (0, 255, 255)
 PINK = (200, 150, 160)
 BLACK = (0, 0, 0)
@@ -58,12 +59,14 @@ def wheel(pos):
         return (0, int(pos*3), int(255 - pos*3))
 
 def flicker(idx, rgbVal):
+    neopixels.brightness = 1
     neopixels[idx] = rgbVal
     if idx > 2 and idx < NUMPIXELS -2:
         neopixels[idx -2] = rgbVal
         neopixels[idx -1] = rgbVal
     time.sleep(0.0125)
     neopixels[idx] = (0, 0, 0)
+    neopixels.brightness = .1
 
 def rainbowPulse(i):
     for p in range(NUMPIXELS):
@@ -95,8 +98,11 @@ def whitePulse():
         neopixels.fill((rCur - 10, gCur - 10, bCur - 10))
 
 def blinkFade(blinkColor):
+    # Count how many LEDs are currently on or fading
+    currentLitPixels = sum(1 for state in LED_STATES if state > 0)
+
     # print("blinking")
-    currentLitPixels = 0
+    # currentLitPixels = 0
     # count total lit pixels
     for p in range(NUMPIXELS):
         aPixel = neopixels[p]
@@ -118,7 +124,9 @@ def blinkFade(blinkColor):
 
         if (aPixel[0] < 10 and aPixel[1] < 10 and aPixel[2] < 10):
             neopixels[p] = ((0,0,0))
+            LED_STATES[p] = 0
             currentLitPixels -= 1
+            ## time.sleep(.0125)
 
 
 
@@ -127,21 +135,20 @@ def blinkFade(blinkColor):
     # ARE LESS THAN MAX LIT PIXELS, BUT NEVER CHECKS IF THE 
     # PIXEL IS ALREADY LIT...
     if currentLitPixels < MAXLITBLINKPIXELS:
-        neopixels[random.randint(0,8)] = blinkColor
-    # neopixels[random.randint(0,29)] = (250, 250, 250)
+        # Find a pixel that isn't lit
+        bDone=False
+        while not bDone:
+            randoPixel = random.randint(0,NUMPIXELS-1)
+            aPixel = neopixels[randoPixel]
 
-    # if currentLitPixels < 15:
-    #     for p in range(NUMPIXELS):
-    #         if neopixels[p][0] == 0:
-                # there is a 1:10 chance that the pixel will get lit
-    #             if random.randint(0, 10) == 7:
-    #                 neopixels[p] = (250, 250, 250)
-    #                 print("added a pixel there are ")
-    #                 print(currentLitPixels)
-    #                 print( "lit pixels")
+            if (aPixel[0] == 0):
+                neopixels[randoPixel] = blinkColor
+                LED_STATES[randoPixel] = 1
+                currentLitPixels += 1
+                ## time.sleep(.125)
+                time.sleep((random.randint(0,10)/60))
+                bDone=True
 
-    # if currentLitPixels < 2:
-    #     neopixels[random.randint(0,29)] = (250, 250, 250)
 
 ######################### MAIN LOOP ##############################
 
@@ -152,6 +159,9 @@ while True:
 
     if touch.value:
         neopixels.fill(BLACK)
+        flicker(random.randint(0, NUMPIXELS-1), WHITE)
+        time.sleep(.1)
     else:
-        blinkFade(COLORPALLET[random.randint(0,3)])
-        time.sleep(1)
+        # blinkFade(COLORPALLET[random.randint(0,3)])
+        blinkFade(WHITE)
+        time.sleep(.1)
