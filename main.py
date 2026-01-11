@@ -13,11 +13,11 @@ import random
 touch = TouchIn(D1)
 
 # NeoPixel strip (of 16 LEDs) connected on D4
-NUMPIXELS = 9
+NUMPIXELS = 7
 MAXLITBLINKPIXELS = 7
 CURLITBLINKPIXELS = 0
 LED_STATES = [0] * NUMPIXELS
-neopixels = neopixel.NeoPixel(D3, NUMPIXELS, brightness=.1, auto_write=True)
+neopixels = neopixel.NeoPixel(D3, NUMPIXELS, brightness=.8, auto_write=True)
 DIRECTION = 1 # 1 == "up"
 COLOR = 1 # 1 == "red"
 
@@ -130,11 +130,8 @@ def blinkFade(blinkColor):
 
 
 
-    # if the number of lit pixels is less than max lit pixels
-    # THIS IS THE PROBLEM. A RANDOM PIXEL IS SELECTED IF THERE 
-    # ARE LESS THAN MAX LIT PIXELS, BUT NEVER CHECKS IF THE 
-    # PIXEL IS ALREADY LIT...
-    if currentLitPixels < MAXLITBLINKPIXELS:
+    # This is the pattern I've been trying to figure out for a while now. 
+    if currentLitPixels < MAXLITBLINKPIXELS and random.randint(0,10) <= 1:
         # Find a pixel that isn't lit
         bDone=False
         while not bDone:
