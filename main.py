@@ -159,6 +159,6 @@ while True:
         flicker(random.randint(0, NUMPIXELS-1), WHITE)
         time.sleep(.1)
     else:
-        # blinkFade(COLORPALLET[random.randint(0,3)])
-        blinkFade(WHITE)
+        blinkFade(COLORPALLET[random.randint(0,3)])
+        ## blinkFade(WHITE)
         time.sleep(.1)
