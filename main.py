@@ -129,7 +129,7 @@ def blinkFade(blinkColor):
             ## time.sleep(.0125)
 
     # This is the pattern I've been trying to figure out for a while now. 
-    if currentLitPixels < MAXLITBLINKPIXELS and random.randint(0,10) <= 2:
+    if currentLitPixels < MAXLITBLINKPIXELS and random.randint(0,10) <= 6:
         # Find a pixel that isn't lit
         bDone=False
         while not bDone:
@@ -164,24 +164,22 @@ while True:
             if COLOR == 1:
                 COLOR = 2
             if COLOR == 2:
-                COLOR = 3
-            if COLOR == 3:
-                COLOR = 4
-            if COLOR == 4:
                 COLOR = 1
 
             colorChange = 0
         
         if COLOR == 1:
             blinkFade(WHITE)
+            ## blinkFade(COLORPALLET[random.randint(0,4)])
             time.sleep(0.0312)
         if COLOR == 2:
-            i = (i+30) % 256  # run from 0 to 255
-            neopixels.brightness = .5
-            rainbowPulse(i)
+            ## blinkFade(WHITE)
+            blinkFade(COLORPALLET[random.randint(0,4)])
         if COLOR == 3:
             whitePulse()
         if COLOR == 4:
-            blinkFade(COLORPALLET[random.randint(0,4)])
+            i = (i+30) % 256  # run from 0 to 255
+            neopixels.brightness = .5
+            rainbowPulse(i)
         
         
