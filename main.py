@@ -13,8 +13,8 @@ import random
 touch = TouchIn(D1)
 
 # NeoPixel strip (of 16 LEDs) connected on D4
-NUMPIXELS = 7
-MAXLITBLINKPIXELS = 7
+NUMPIXELS = 11
+MAXLITBLINKPIXELS = 10
 CURLITBLINKPIXELS = 0
 LED_STATES = [0] * NUMPIXELS
 neopixels = neopixel.NeoPixel(D3, NUMPIXELS, brightness=.8, auto_write=True)
@@ -32,8 +32,8 @@ CYAN = (0, 255, 255)
 PINK = (200, 150, 160)
 BLACK = (0, 0, 0)
 
-## COLORPALLET = [CYAN, WHITE, BLUE, PURPLE, GREEN, PINK, BLACK]
-COLORPALLET = [WHITE, WHITE, WHITE, WHITE]
+COLORPALLET = [CYAN, BLUE, PURPLE, GREEN, PINK]
+## COLORPALLET = [WHITE, WHITE, WHITE, WHITE]
 
 ######################### HELPERS ##############################
 
@@ -128,10 +128,8 @@ def blinkFade(blinkColor):
             currentLitPixels -= 1
             ## time.sleep(.0125)
 
-
-
     # This is the pattern I've been trying to figure out for a while now. 
-    if currentLitPixels < MAXLITBLINKPIXELS and random.randint(0,10) <= 1:
+    if currentLitPixels < MAXLITBLINKPIXELS and random.randint(0,10) <= 2:
         # Find a pixel that isn't lit
         bDone=False
         while not bDone:
@@ -158,7 +156,32 @@ while True:
         neopixels.fill(BLACK)
         flicker(random.randint(0, NUMPIXELS-1), WHITE)
         time.sleep(.1)
+        colorChange = 1
+        print("D1 touched!")
     else:
-        blinkFade(COLORPALLET[random.randint(0,3)])
-        ## blinkFade(WHITE)
-        time.sleep(.1)
+        if colorChange == 1:
+            # print ("Color is changing!")
+            if COLOR == 1:
+                COLOR = 2
+            if COLOR == 2:
+                COLOR = 3
+            if COLOR == 3:
+                COLOR = 4
+            if COLOR == 4:
+                COLOR = 1
+
+            colorChange = 0
+        
+        if COLOR == 1:
+            blinkFade(WHITE)
+            time.sleep(0.0312)
+        if COLOR == 2:
+            i = (i+30) % 256  # run from 0 to 255
+            neopixels.brightness = .5
+            rainbowPulse(i)
+        if COLOR == 3:
+            whitePulse()
+        if COLOR == 4:
+            blinkFade(COLORPALLET[random.randint(0,4)])
+        
+        
