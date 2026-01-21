@@ -30,5 +30,5 @@ While I've fad a few bottles break, drilling the hole is becoming a lot easier f
 
 ## Pouring the resin
 
-
 <img src="/images/firstPour01.jpeg" width="250"/> <img src="/images/firstPour02.jpeg" width="250"/>
+<img src="/images/firstPour.gif" width="500"/>
