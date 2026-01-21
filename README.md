@@ -9,12 +9,21 @@ I wanted to fall back to clear resin with visible, but pretty electronics. I had
 
 <img src="/images/tinyLeds.jpeg" width="250"/> <img src="/images/singleLed.jpeg" width="250"/>
 
+# The Build
+
 I had a few failures, but steeled on solid core steel wire 22GA. It reacted well to holding a shape, and the wires were exactly what I was looking for. Before long, I had made myself an LED strip that looked pretty cool...
 
 <img src="/images/rLedHelix.jpeg" width="750"/> <img src="/images/wLedHelix.jpeg" width="750"/>
 
-There was a time, for a brief few moments that I thought, "I wont have to worry about the wires touching... They'll be in resin!" They're bare steel, so I needed to douse them in confomal coating. A process that I honestly thought would be worse.Just paint it on, let it drip. When it's done, it's plenty flexible to squeeze into a bottle. 
+## Conformal coating
+There was a time, for a brief few moments that I thought, "I wont have to worry about the wires touching... They'll be in resin!" They're bare steel, so I needed to douse them in confomal coating. A process that I honestly thought would be worse. Just paint it on, let it drip. When it's done, it's plenty flexible to squeeze into a bottle. 
 
 <img src="/images/cf01.jpeg" width="250"/> <img src="/images/cf02.jpeg" width="250"/>
 <img src="/images/cf03.jpeg" width="250"/> <img src="/images/cf04.jpeg" width="250"/>
 <img src="/images/cf05.jpeg" width="250"/> <img src="/images/cf06.jpeg" width="250"/>
+
+## Into and out of the bottle
+While I've fad a few bottles break, drilling the hole is becoming a lot easier for me. This time I wanted to make the power wires in addition to the lights look good. The first placement and first pour were nerve-wracking.
+
+
+<img src="/images/emptyBottle01.jpeg" width="250"/> <img src="/images/emptyBottle02.jpeg" width="250"/>
