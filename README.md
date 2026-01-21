@@ -11,4 +11,4 @@ I wanted to fall back to clear resin with visible, but pretty electronics. I had
 
 I had a few failures, but steeled on solid core steel wire 22GA. It reacted well to holding a shape, and the wires were exactly what I was looking for. Before long, I had made myself an LED strip that looked pretty cool...
 
-<img src="/images/rLedHelix.jpeg" width="750"/> <img src="/images/eLedHelix.jpeg" width="750"/>
+<img src="/images/rLedHelix.jpeg" width="750"/> <img src="/images/wLedHelix.jpeg" width="750"/>
