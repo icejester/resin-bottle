@@ -7,4 +7,4 @@ I had been wanting to make this bottle for some time. There was smething I wante
 # The goal
 I wanted to fall back to clear resin with visible, but pretty electronics. I had been using LED strips that, while functional, looked kinda janky. I wanted a steampunk / Edison kind of feel. I had gone through several iterations, but I was finally able to find a wire / LED structure that was firm enough to hold a shape yet flexible enough to bend a little.
 
-<img src="/images/tinyLeds.jpeg" width="300"/> <img src="/images/singleLed.jpeg" width="300"/>
+<img src="/images/tinyLeds.jpeg" width="250"/> <img src="/images/singleLed.jpeg" width="250"/>
